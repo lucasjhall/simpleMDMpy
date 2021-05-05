@@ -110,14 +110,20 @@ class Devices(SimpleMDMpy.SimpleMDM.Connection):
         data = {}
         return self._post_data(url, data)
 
+    def get_custom_attributes(self, device_id):
+        """Get all custom attributes for a device."""
+        url = self.url + "/" + str(device_id) + "/custom_attribute_values"
+        data = {}
+        return self._get_data(url, data)
+
     def get_custom_attribute(self, device_id, custom_attribute_name):
-        """get a devices custom attributes"""
+        """Get a specific custom attribute for a device."""
         url = self.url + "/" + str(device_id) + "/custom_attribute_values/" + custom_attribute_name
         data = {}
         return self._get_data(url, data)
 
     def set_custom_attribute(self, value, device_id, custom_attribute_name):
-        """set a devices custom attribute to a specific value"""
+        """Set a custom attribute value."""
         url = self.url + "/" + str(device_id) + "/custom_attribute_values/" + custom_attribute_name
         data = {'value': value}
         return self._put_data(url, data)
